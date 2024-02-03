@@ -7,6 +7,8 @@ using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+
 builder.Services.AddDbContext<SignalRContext>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

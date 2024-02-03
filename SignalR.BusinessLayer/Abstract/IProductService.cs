@@ -9,5 +9,7 @@ namespace SignalR.BusinessLayer.Abstract
 {
     public interface IProductService:ISocialMediaService<Product>
     {
+        List<Product> TGetProductWithCategory();
+
     }
 }

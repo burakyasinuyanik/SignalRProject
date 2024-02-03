@@ -9,5 +9,6 @@ namespace SignalR.EntityLayer.Entities
         public int CatogoryId { get; set; }
         public string Name { get; set; }
         public bool Status { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }
