@@ -10,6 +10,12 @@ namespace SignalR.BusinessLayer.Abstract
     public interface IProductService:ISocialMediaService<Product>
     {
         List<Product> TGetProductWithCategory();
+        int TProductCount();
+		int TProductCountByCategoryNameHamburger();
+		int TProductCountByCategoryNameDrink();
+		decimal TProductPriceAvg();
+		string TProductNameByMaxPrice();
+		string TProductNameByMinPrice();
 
-    }
+	}
 }

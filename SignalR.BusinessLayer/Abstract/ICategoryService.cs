@@ -9,5 +9,9 @@ namespace SignalR.BusinessLayer.Abstract
 {
     public interface ICategoryService:ISocialMediaService<Category>
     {
-    }
+		int TCategoryCount();
+		int TActiveCategoryCount();
+		int TPassiveCategoryCount();
+
+	}
 }

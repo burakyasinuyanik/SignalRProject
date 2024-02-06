@@ -28,6 +28,11 @@ namespace SignalRApi.Controllers
             var values = _mapper.Map<List<ResultProducDto>>(_productService.TGetListAll());
             return Ok(values);
         }
+        [HttpGet("ProductCount")]
+        public IActionResult ProductCount()
+        {
+            return Ok(_productService.TProductCount());
+        }
         [HttpGet("ProductListWithCategory")]
         public IActionResult ProductListWithCategory()
         {
@@ -35,8 +40,33 @@ namespace SignalRApi.Controllers
             var values = _mapper.Map<List<ResultProductWithCategoryDto>>(_productService.TGetProductWithCategory);
             return Ok(values);
         }
+        [HttpGet("ProductCountByCategoryNameDrink")]
+        public IActionResult ProductCountByCategoryNameDrink()
+        {
+            return Ok(_productService.TProductCountByCategoryNameDrink());
+        }
+		[HttpGet("ProductCountByCategoryHamburgerDrink")]
+		public IActionResult ProductCountByCategoryNameHamburger()
+		{
+			return Ok(_productService.TProductCountByCategoryNameHamburger());
+		}
+        [HttpGet("ProductPriceAvg")]
+        public IActionResult ProductPriceAvg()
+        {
+            return Ok(_productService.TProductPriceAvg());
+        }
+        [HttpGet("ProductNameByMinPrice")]
+        public IActionResult ProductNameByMinPrice()
+        {
+            return Ok(_productService.TProductNameByMinPrice());
+        }
+		[HttpGet("ProductNameByMaxPrice")]
+		public IActionResult ProductNameByMaxPrice()
+		{
+			return Ok(_productService.TProductNameByMaxPrice());
+		}
 
-        [HttpPost]
+		[HttpPost]
         public IActionResult CreateProduct(CreateProducDto createProducDto)
         {
             Product product = new Product()
