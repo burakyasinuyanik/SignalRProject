@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SignalR.BusinessLayer.Abstract
 {
-    public interface IBookingService:ISocialMediaService<Booking>
+    public interface IBookingService: IGenericService<Booking>
     {
     }
 }

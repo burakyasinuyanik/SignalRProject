@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SignalR.BusinessLayer.Abstract
 {
-    public interface IDiscountService:ISocialMediaService<Discount>
+    public interface IDiscountService: IGenericService<Discount>
     {
     }
 }
