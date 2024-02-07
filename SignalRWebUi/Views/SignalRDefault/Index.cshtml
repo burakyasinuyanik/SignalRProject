@@ -6,7 +6,23 @@
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/microsoft/signalr/dist/browser/signalr.min.js"></script>
 
+$(document).ready(() => {
+        var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:7294/SignalRHub").build();
 
+        connection.start().then(() => {
+            connection.start().then(() => {
+                setInterval(() => {
+                    connection.invoke("SendCategoryCount");
+                }, 1000);
+            })
+
+        }).catch((err) => {
+            console.log(err);
+            connection.on("ReceiveCategoryCount", (value) => {
+                $("#categoryCount").text(value);
+            });
+
+        });
 
 
     <div class = "content">
@@ -22,6 +38,9 @@
                                     $("#connstatus").text(connection.state);
                                 }).catch((err) => { console.log(err); })
                             })
+                            connection.on("ReceiveCategoryCount", (value) => {
+                                $("categoryCount").text(value);
+                            });
                         </script>
                     </div>
                 </div>
