@@ -25,7 +25,7 @@ namespace SignalRApi.Controllers
         public IActionResult ProductList()
         {
 
-            var values = _mapper.Map<List<ResultProducDto>>(_productService.TGetListAll());
+            var values = _mapper.Map<List<ResultProducDto>>(_productService.TGetProductWithCategory());
             return Ok(values);
         }
         [HttpGet("ProductAvgPriceByHamburger")]
@@ -42,7 +42,7 @@ namespace SignalRApi.Controllers
         public IActionResult ProductListWithCategory()
         {
 
-            var values = _mapper.Map<List<ResultProductWithCategoryDto>>(_productService.TGetProductWithCategory);
+            var values = _productService.TGetProductWithCategory();
             return Ok(values);
         }
         [HttpGet("ProductCountByCategoryNameDrink")]

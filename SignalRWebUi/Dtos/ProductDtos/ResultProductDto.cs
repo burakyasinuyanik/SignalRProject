@@ -1,4 +1,6 @@
-﻿namespace SignalRWebUi.Dtos.ProductDtos
+﻿using SignalR.EntityLayer.Entities;
+
+namespace SignalRWebUi.Dtos.ProductDtos
 {
 	public class ResultProductDto
 	{
@@ -8,6 +10,8 @@
 		public decimal Price { get; set; }
 		public string ImgUrl { get; set; }
 		public bool Status { get; set; }
-		public string CategoryName { get; set; }
-	}
+        public int? CategoryId { get; set; }
+        public virtual Category Category { get; set; }
+      
+    }
 }
