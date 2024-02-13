@@ -66,6 +66,9 @@ builder.Services.AddScoped<IMoneyCasesDal, EfMoneyCaseDal>();
 
 builder.Services.AddScoped<IMenuTableService, MenuTableManager>();
 builder.Services.AddScoped<IMenuTableDal, EfMenuTableDal>();
+
+builder.Services.AddScoped<IBasketService, BasketManager>();
+builder.Services.AddScoped<IBasketDal, EfBasketDal>();
 // Add services to the container.
 
 builder.Services.AddControllers();

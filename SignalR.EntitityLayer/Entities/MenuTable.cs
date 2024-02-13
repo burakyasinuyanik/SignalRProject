@@ -13,5 +13,7 @@ namespace SignalR.EntityLayer.Entities
 		public int TableId { get; set; }
 		public string Name { get; set; }
 		public bool Status { get; set; }
-	}
+        public List<Basket> Baskets { get; set; }
+
+    }
 }
