@@ -55,7 +55,7 @@
                                             <h6>
                                                 @item.Price ₺
                                             </h6>
-                                            <a href="">
+                                            <a href="" onclick="addBasket(@item.ProductId,'@item.Name')">
                                                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
                                                 <g>
                                                 <g>
@@ -211,6 +211,27 @@
     <!-- footer section -->
     <!-- jQery -->
     @await Component.InvokeAsync("_UILayoutScriptComponentPartial");
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <script>
+        function addBasket(id,productName) {
+            event.preventDefault();
+            $.ajax({
+                type:"post",
+                url:"/Menu/AddBasket",
+                data: { productId: id },
+                success: function () {
+                    Swal.fire({
+                        title: productName,
+                        text: "Sepetinize Eklendi",
+                        icon: "success"
+                    });
+                }
+            })
+
+          
+        }
+    </script>
 
 </body>
 
