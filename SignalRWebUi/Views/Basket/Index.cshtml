@@ -2,6 +2,9 @@
 @{
     Layout = null;
     int count = 0;
+    decimal basketTotalPrice = 0;
+    decimal taxPrice = 0;
+    decimal totalPriceWithTax = 0;
 }
 
 <!DOCTYPE html>
@@ -47,15 +50,17 @@
                     @foreach(var item in Model)
                     {
                         count++;
-
-                    <tbody class="align-middle">
+                        taxPrice += item.Price * 1 / 100;
+                        basketTotalPrice = Model.Sum(p => p.Price);
+                        totalPriceWithTax = taxPrice + basketTotalPrice;
+                        <tbody class="align-middle">
                          <tr>
                                 <td class="align-middle">@count</td>
                                 <td class="align-middle">@item.Product.Name</td>
                                 <td class="align-middle">@item.Count</td>
                                 <td class="align-middle">@item.Price</td>
                                 <td class="align-middle">@item.TotalPrice</td>
-                                <td class="align-middle btn-delete" ><button data-basketId="@item.BasketId" id="btnDeleteBasketId" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button></td>
+                                <td class="align-middle btn-delete" ><button data-basketId="@item.BasketId" onclick="deleteProduct(@item.BasketId)" id="btnDeleteBasketId" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button></td>
                          </tr>
                     </tbody>
                     }
@@ -74,18 +79,18 @@
                     <div id="container" class="border-bottom pb-2">
                         <div class="d-flex justify-content-between mb-3">
                             <h6>Toplam Tutar</h6>
-                            <h6><span id="totalPrice">100 ₺</span></h6>
+                            <h6><span id="totalPrice">@basketTotalPrice</span></h6>
                         </div>
                         <div class="d-flex justify-content-between mb-3">
-                            <h6 class="font-weigth-medium">Kdv Oranı</h6>
-                            <h6><span id="kdv" class="font-weigth-medium">23 ₺</span></h6>
+                            <h6 class="font-weigth-medium">Kdv Tutarı</h6>
+                            <h6><span id="kdv" class="font-weigth-medium">@taxPrice ₺</span></h6>
                         </div>
                         <br />
                     </div>
                     <div class="pt-2">
                         <div class="d-flex justify-content-between mt-3">
                             <h5>Toplam Tutar</h5>
-                            <h6><span id="totalPriceWithKdv">100 ₺</span></h6>
+                            <h6><span id="totalPriceWithKdv">@totalPriceWithTax ₺</span></h6>
                         </div>
                       <br />
                       <button id="btnChecked" class="btn btn-block btn-warning font-weight-bold my-3">Siparişi Ver</button>
@@ -180,7 +185,31 @@
     <!-- footer section -->
     <!-- jQery -->
     @await Component.InvokeAsync("_UILayoutScriptComponentPartial");
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <script>
+        function deleteProduct(id) {
+            $.ajax({
+                type: "post",
+                url: "/Basket/DeleteBasket",
+                data: {
+                    id: id
+                },
+                success: function () {
+                    Swal.fire({
+                        position: "top-center",
+                        icon: "success",
+                        title: "Ürün Sepetten Silindi",
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                    setTimeout(function () {
+                        location.reload(); 
+                    }, 1100);
+                }
+            })
+        }
+    </script>
 </body>
 
 </html>

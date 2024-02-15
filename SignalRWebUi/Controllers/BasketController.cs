@@ -27,5 +27,17 @@ namespace SignalRWebUi.Controllers
             return View();
         }
 
+        
+        public async Task<IActionResult> DeleteBasket(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.DeleteAsync($"https://localhost:7294/api/Basket/{id}");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return Ok(responseMessage);
+            }
+            return BadRequest();
+        }
+
     }
 }
