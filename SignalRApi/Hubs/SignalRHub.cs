@@ -13,17 +13,19 @@ namespace SignalRApi.Hubs
 		private readonly IMoneyCaseService _moneyCaseService;
 		private readonly IMenuTableService _menuTableService;
 		private readonly IBookingService _bookingService;
-        public SignalRHub(ICategoryService categoryService, IProductService productService, IOrderService orderService, IMoneyCaseService moneyCaseService, IMenuTableService menuTableService, IBookingService bookingService)
-        {
-            _categoryService = categoryService;
-            _productService = productService;
-            _orderService = orderService;
-            _moneyCaseService = moneyCaseService;
-            _menuTableService = menuTableService;
-            _bookingService = bookingService;
-        }
+		private readonly INatificationService _natificationService;
+		public SignalRHub(ICategoryService categoryService, IProductService productService, IOrderService orderService, IMoneyCaseService moneyCaseService, IMenuTableService menuTableService, IBookingService bookingService, INatificationService natificationService)
+		{
+			_categoryService = categoryService;
+			_productService = productService;
+			_orderService = orderService;
+			_moneyCaseService = moneyCaseService;
+			_menuTableService = menuTableService;
+			_bookingService = bookingService;
+			_natificationService = natificationService;
+		}
 
-        public async Task SendStatistic()
+		public async Task SendStatistic()
 		{
 			var value = _categoryService.TCategoryCount();
 			await Clients.All.SendAsync("ReceiveCategoryCount", value);
@@ -76,6 +78,11 @@ namespace SignalRApi.Hubs
 		{
 			var value = _bookingService.TGetListAll();
 			await Clients.All.SendAsync("ReceiveGetBookingList", value);
+		}
+		public async Task SendNotification()
+		{
+			var value = _natificationService.TNatificationCountByStatusFalse();
+			await Clients.All.SendAsync("ReceiveNatificationCountByFalse", value);
 		}
 	}
 }
