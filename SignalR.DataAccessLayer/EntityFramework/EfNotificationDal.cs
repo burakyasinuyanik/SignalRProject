@@ -10,10 +10,16 @@ using System.Threading.Tasks;
 
 namespace SignalR.DataAccessLayer.EntityFramework
 {
-	public class EfNatificationDal : GenericRepository<Notification>, INatificationDal
+	public class EfNotificationDal : GenericRepository<Notification>, INotificationDal
 	{
-		public EfNatificationDal(SignalRContext context) : base(context)
+		public EfNotificationDal(SignalRContext context) : base(context)
 		{
+		}
+
+		public List<Notification> GetAllNotifationByFalse()
+		{
+			var context = new SignalRContext();
+			return context.Notifications.Where(n=>n.Status==false).ToList();
 		}
 
 		public int NatificationCountByStatusFalse()

@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SignalR.EntityLayer.Entities
+namespace SignalR.DtoLayer.NotificationDto
 {
-	public class Notification
+	public class ResultNatificationDto
 	{
-		[Key]
 		public int NotificationId { get; set; }
 		public string Type { get; set; }
 		public string Icon { get; set; }

@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace SignalR.BusinessLayer.Abstract
 {
-	public interface INatificationService:IGenericService<Notification>
+	public interface INotificationService:IGenericService<Notification>
 	{
 		int TNatificationCountByStatusFalse();
+		List<Notification> TGetAllNotifationByFalse();
+
 	}
 }

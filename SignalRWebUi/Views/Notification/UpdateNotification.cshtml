@@ -1,0 +1,58 @@
+﻿@model UpdateNotificationDto
+@{
+    ViewData["Title"] = "UpdateNotification";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="content">
+	<div class="container-fluid">
+		<h4 class="page-title">Bildirim İşlemleri</h4>
+		<div class="row">
+			<div class="col-md-12">
+				<form method="post">
+					<div class="card">
+						<div class="card-header">
+							<div class="card-title">Bildirim Ekle</div>
+						</div>
+						<div class="card-body">
+							<div class="form-group">
+								<input type="hidden" asp-for="@Model.NotificationId" />
+								<label for="categoryName">Bildirim Türü</label>
+								<input type="text" class="form-control" id="notificationType" asp-for="@Model.Type" placeholder="Bildirim Türünü Giriniz">
+
+							</div>
+						</div>
+						<div class="card-body">
+							<div class="form-group">
+								<label for="categoryName">Bildirim Icon</label>
+								<input type="text" class="form-control" id="notificationIcon" asp-for="@Model.Icon" placeholder="Bildirim Iconu Giriniz">
+
+							</div>
+						</div>
+						<div class="card-body">
+							<div class="form-group">
+								<label for="categoryName">Bildirim Açıklaması</label>
+								<input type="text" class="form-control" id="notificationDescription" asp-for="@Model.Description" placeholder="Bildirim Açıklaması Giriniz">
+
+							</div>
+						</div>
+						<div class="card-body">
+							<div class="form-group">
+								<label for="categoryName">Bildirim Tarihi</label>
+								<input type="datetime-local" class="form-control" id="notificationDate" asp-for="@Model.Date" placeholder="Bildirim Tarihini Giriniz">
+
+							</div>
+						</div>
+
+						<div class="card-action">
+							<button class="btn btn-primary">Bildirimi Güncelle</button>
+
+						</div>
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</div>
+</div>
+

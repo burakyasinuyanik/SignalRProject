@@ -70,8 +70,8 @@ builder.Services.AddScoped<IMenuTableDal, EfMenuTableDal>();
 builder.Services.AddScoped<IBasketService, BasketManager>();
 builder.Services.AddScoped<IBasketDal, EfBasketDal>();
 
-builder.Services.AddScoped<INatificationService, NatificationManager>();
-builder.Services.AddScoped<INatificationDal, EfNatificationDal>();
+builder.Services.AddScoped<INotificationService, NotificationManager>();
+builder.Services.AddScoped<INotificationDal, EfNotificationDal>();
 // Add services to the container.
 
 builder.Services.AddControllers();

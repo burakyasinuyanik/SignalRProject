@@ -13,8 +13,8 @@ namespace SignalRApi.Hubs
 		private readonly IMoneyCaseService _moneyCaseService;
 		private readonly IMenuTableService _menuTableService;
 		private readonly IBookingService _bookingService;
-		private readonly INatificationService _natificationService;
-		public SignalRHub(ICategoryService categoryService, IProductService productService, IOrderService orderService, IMoneyCaseService moneyCaseService, IMenuTableService menuTableService, IBookingService bookingService, INatificationService natificationService)
+		private readonly INotificationService _notificationService;
+		public SignalRHub(ICategoryService categoryService, IProductService productService, IOrderService orderService, IMoneyCaseService moneyCaseService, IMenuTableService menuTableService, IBookingService bookingService, INotificationService notificationService)
 		{
 			_categoryService = categoryService;
 			_productService = productService;
@@ -22,7 +22,7 @@ namespace SignalRApi.Hubs
 			_moneyCaseService = moneyCaseService;
 			_menuTableService = menuTableService;
 			_bookingService = bookingService;
-			_natificationService = natificationService;
+			_notificationService = notificationService;
 		}
 
 		public async Task SendStatistic()
@@ -81,8 +81,11 @@ namespace SignalRApi.Hubs
 		}
 		public async Task SendNotification()
 		{
-			var value = _natificationService.TNatificationCountByStatusFalse();
-			await Clients.All.SendAsync("ReceiveNatificationCountByFalse", value);
+			var value = _notificationService.TNatificationCountByStatusFalse();
+			await Clients.All.SendAsync("ReceiveNotificationCountByFalse", value);
+			var valueList = _notificationService.TGetAllNotifationByFalse();
+		
+			await Clients.All.SendAsync("ReceiveNotifationByFalseList", valueList);
 		}
 	}
 }

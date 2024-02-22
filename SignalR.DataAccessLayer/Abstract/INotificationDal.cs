@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace SignalR.DataAccessLayer.Abstract
 {
-	public interface INatificationDal:IGenericDal<Notification>
+	public interface INotificationDal:IGenericDal<Notification>
 	{
 		public int NatificationCountByStatusFalse();
+		List<Notification> GetAllNotifationByFalse();
 	}
 }

@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace SignalR.BusinessLayer.Concrete
 {
-	public class NatificationManager : INatificationService
+	public class NotificationManager : INotificationService
 	{
-		private readonly INatificationDal _natificationDal;
+		private readonly INotificationDal _natificationDal;
 
 	
-		public NatificationManager(INatificationDal natificationDal)
+		public NotificationManager(INotificationDal natificationDal)
 		{
 			_natificationDal = natificationDal;
 		}
@@ -27,6 +27,11 @@ namespace SignalR.BusinessLayer.Concrete
 		public void TDelete(Notification entity)
 		{
 			_natificationDal.Delete(entity);
+		}
+
+		public List<Notification> TGetAllNotifationByFalse()
+		{
+			return _natificationDal.GetAllNotifationByFalse();
 		}
 
 		public Notification TGetById(int id)
