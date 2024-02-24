@@ -49,6 +49,16 @@ namespace SignalR.BusinessLayer.Concrete
 			return _natificationDal.NatificationCountByStatusFalse();
 		}
 
+		public void TNotificationChangeFalse(int id)
+		{
+			_natificationDal.NotificationChangeFalse(id);
+		}
+
+		public void TNotificationChangeTrue(int id)
+		{
+			_natificationDal.NotificationChangeTrue(id);
+		}
+
 		public void TUpdate(Notification entity)
 		{
 			_natificationDal.Update(entity);
