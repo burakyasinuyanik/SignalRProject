@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SignalR.DtoLayer.MenuTableDto
+namespace SignalRWebUi.Dtos.MenuTableDtos
 {
-	public class ResultMenuTableDto
+	public class GetMenuTableDto
 	{
 		public int TableId { get; set; }
 		public string Name { get; set; }
 		public bool Status { get; set; }
-		
+	
 	}
 }

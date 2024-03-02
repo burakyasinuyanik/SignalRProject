@@ -1,0 +1,85 @@
+﻿@model List<ResultMenuTableDto> 
+@{
+	ViewData["Title"] = "TableListByStatus";
+	Layout = "~/Views/AdminLayout/Index.cshtml";
+	
+}
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/microsoft/signalr/dist/browser/signalr.min.js"></script>
+
+
+<div class="content">
+	<div class="container-fluid">
+		<script type="text/javascript">
+			$(document).ready(() => {
+				var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:7294/SignalRHub").build();
+
+				connection.start()
+					.then(() => {
+
+
+						setInterval(() => {
+							connection.invoke("GetListMenuTableByStatus");
+
+						}, 1000);
+
+					})
+					.catch((err) => {
+						console.error("Error starting SignalR connection:", err);
+					});
+					let color = "";
+				let status = "";
+				connection.on("ReceiveMenuTableByStatus", (value) => {
+					$("#menuTable").empty();
+
+					for (var item of value) {
+						if (item.status == false) {
+							color = "card card-stats card-success";
+							status = "Masa Dolu";
+						} else {
+							color = "card card-stats card-danger";
+							status = "Masa Boş";
+
+						}
+
+						$("#menuTable").append(
+
+							`
+										<div class="col-md-3">
+											<div class="${color}">
+												<div class="card-body ">
+													<div class="row">
+														<div class="col-5">
+															<div class="icon-big text-center">
+																<i class="la la-tablet"></i>
+															</div>
+														</div>
+														<div class="col-7 d-flex align-items-center">
+															<div class="numbers">
+																<p class="card-category">Masa Adı</p>
+																<h4 class="card-title" id="">${item.name}</h4>
+																<h4 class="card-title" id="">${status}</h4>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+													`
+
+
+						);
+					}
+				});
+				
+			});
+		</script>
+		<h4 class="page-title">Anlık Masa Durumları</h4>
+		<div id="menuTable" class="row">
+			
+			
+		</div>
+	</div>
+</div>
+

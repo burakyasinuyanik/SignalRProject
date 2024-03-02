@@ -37,7 +37,8 @@ namespace SignalRApi.Controllers
 		{
 			MenuTable menuTable = new MenuTable()
 			{
-				
+				Name= createMenuTableDto.Name,
+				Status=false
 			};
 			_menuTableService.TAdd(menuTable);
 
@@ -55,7 +56,9 @@ namespace SignalRApi.Controllers
 		{
 			MenuTable menuTable = new MenuTable()
 			{
-				
+				Name = updateMenuTableDto.Name,
+				Status=updateMenuTableDto.Status,
+				TableId=updateMenuTableDto.TableId,
 			};
 			_menuTableService.TUpdate(menuTable);
 			return Ok("Masa Bilgisi Güncellendi");
