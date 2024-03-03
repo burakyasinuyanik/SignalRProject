@@ -12,10 +12,17 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter" Version="8.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SignalR.DataAccessLayer\SignalR.DataAccessLayer.csproj" />
     <ProjectReference Include="..\SignalR.DtoLayer\SignalR.DtoLayer.csproj" />
     <ProjectReference Include="..\SignalR.EntitityLayer\SignalR.EntityLayer.csproj" />
   </ItemGroup>

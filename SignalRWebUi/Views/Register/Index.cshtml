@@ -1,0 +1,54 @@
+﻿@model RegisterDto
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Kayıt Ol !</title>
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!-- Font-->
+	<link rel="stylesheet" type="text/css" href="~/colorlib-regform-32/css/nunito-font.css">
+	<!-- Main Style Css -->
+	<link rel="stylesheet" href="~/colorlib-regform-32/css/style.css" />
+</head>
+<body class="form-v6">
+	<div class="page-content">
+		<div class="form-v6-content">
+			<div class="form-left">
+				<img src="~/colorlib-regform-32/images/restoran.jpg" alt="form" style="height:584px; width:484px;">
+			</div>
+			<form class="form-detail"  method="post">
+				<h2>Yeni Kullanıcı</h2>
+
+				<div class="form-row">
+					<input type="text" asp-for="Name"  id="fullname" class="input-text" placeholder="İsminiz" required>
+				</div>
+
+				<div class="form-row">
+					<input type="text" asp-for="Surname"  id="fullsurName" class="input-text" placeholder="Soy Adınız" required>
+				</div>
+
+				<div class="form-row">
+					<input type="text" asp-for="UserName"  id="fulluserName" class="input-text" placeholder="Kullanıcı Adınız" required>
+				</div>
+
+				<div class="form-row">
+					<input type="text" asp-for="Mail"  id="youremail" class="input-text" placeholder="Email Adresiniz" required>
+				</div>
+
+				<div class="form-row">
+					<input type="password" asp-for="Password"  id="password" class="input-text" placeholder="Şifreniz" required>
+				</div>
+				
+				<div class="form-row-last">
+					<input type="submit" name="register" class="register" value="Kayıt Ol">
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

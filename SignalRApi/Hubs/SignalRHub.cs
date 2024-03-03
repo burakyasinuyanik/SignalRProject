@@ -7,6 +7,7 @@ namespace SignalRApi.Hubs
 {
 	public class SignalRHub:Hub
 	{
+		public static int ClientCount { get; set; }
 		private readonly ICategoryService _categoryService;
 		private readonly IProductService _productService;
 		private readonly IOrderService _orderService;
@@ -96,5 +97,19 @@ namespace SignalRApi.Hubs
 		{
 			await Clients.All.SendAsync("ReceiveMessage", user, message);
 		}
-	}
+        public override async Task OnConnectedAsync()
+        {
+			ClientCount += 1;
+
+			await Clients.All.SendAsync("ReceiveClientCount", ClientCount);
+            await base.OnConnectedAsync();
+        }
+        public override async Task OnDisconnectedAsync(Exception? exception)
+        {
+			ClientCount -= 1;
+			await Clients.All.SendAsync("ReceiveClientCount", ClientCount);
+
+            await base.OnDisconnectedAsync(exception);
+        }
+    }
 }
