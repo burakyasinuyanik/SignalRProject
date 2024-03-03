@@ -1,7 +1,8 @@
 ﻿@model List<SignalRWebUi.Dtos.CategoryDtos.ResultCategoryDto>
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/AdminLayout/Index.cshtml";
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/AdminLayout/Index.cshtml";
+	int count = 0;
 }
 
 <div class="content">
@@ -32,8 +33,9 @@
 							<tbody>
 								@foreach(var item in Model)
 								{
+									count++;
 									<tr>
-										<td>@item.CatogoryId</td>
+										<td>@count</td>
 										<td>@item.Name</td>
 										<td>@item.Status</td>
 										<td><a href="/Category/DeleteCategory/@item.CatogoryId" class="btn btn-outline-danger">Sil</a></td>
