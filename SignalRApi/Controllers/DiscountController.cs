@@ -36,7 +36,8 @@ namespace SignalRApi.Controllers
                 Amount = createDiscountDto.Amount,
                 Description = createDiscountDto.Description,
                 ImgUrl= createDiscountDto.ImgUrl,
-               Title = createDiscountDto.Title
+               Title = createDiscountDto.Title,
+               Status= false
             };
 
             _discountService.TAdd(discount);
@@ -67,11 +68,29 @@ namespace SignalRApi.Controllers
                 Description = updateDiscountDto.Description,
                 ImgUrl = updateDiscountDto.ImgUrl,
                 Title = updateDiscountDto.Title,
-                DiccountId= updateDiscountDto.DiccountId
-
+                DiccountId= updateDiscountDto.DiccountId,
+                 Status = false
+                
             });
 
             return Ok("indirim Bilgisi Güncellendi");
         }
-    }
+        [HttpGet("ChangeStatusToTrue/{id}")]
+        public IActionResult ChangeStatusToTrue(int id)
+        {
+            _discountService.TChangeStatusToTrue(id);
+            return Ok("Statü güncellendi");
+        }
+		[HttpGet("ChangeStatusToFalse/{id}")]
+		public IActionResult ChangeStatusToFalse(int id)
+		{
+			_discountService.TChangeStatusToFalse(id);
+			return Ok("Statü güncellendi");
+		}
+        [HttpGet("GetListByStatusTrue")]
+        public IActionResult GetListByStatusTrue()
+        {
+            return Ok(_discountService.TGetListByStatusTrue());
+        }
+	}
 }

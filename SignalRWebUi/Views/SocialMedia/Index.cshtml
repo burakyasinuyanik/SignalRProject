@@ -1,7 +1,8 @@
 ﻿@model List<ResultSocialMediDto>
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/AdminLayout/Index.cshtml";
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/AdminLayout/Index.cshtml";
+	int count = 0;
 }
 
 
@@ -35,9 +36,9 @@
 							<tbody>
 								@foreach (var item in Model)
 								{
-
+									count++;
 									<tr>
-										<td>@item.SocialMediaId</td>
+										<td>@count</td>
 										<td>@item.Title</td>
 										<td>@item.Url</td>
 										<td>@item.Icon</td>
