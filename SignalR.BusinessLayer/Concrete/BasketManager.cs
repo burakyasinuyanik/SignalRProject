@@ -20,6 +20,7 @@ namespace SignalR.BusinessLayer.Concrete
 
         public void TAdd(Basket entity)
         {
+            entity.TotalPrice = entity.Count * entity.Price;
             _basketDal.Add(entity);
         }
 

@@ -20,8 +20,36 @@ namespace SignalR.DataAccessLayer.EntityFramework
         public List<Basket> GetBasketByMenuTable(int id)
         {
             var context = new SignalRContext();
-            
-            return context.Baskets.Where(b=>b.MenuTableId== id).Include(y=>y.Product).ToList();
+			List<Basket> basket=context.Baskets.Where(b => b.MenuTableId == id).Include(y => y.Product).ToList();
+            List < Basket > basketList = new List<Basket>();
+            bool itemAddPrice = true;
+            int asilList = 0;
+			foreach (Basket item in basket)
+            {
+                asilList = basket.Where(b => b.ProductId == item.ProductId).First().ProductId;
+
+				if (item.ProductId==asilList)
+                {
+                    var value =basketList.FirstOrDefault(item => item.ProductId == asilList);
+                    if (!basketList.Contains(value))
+                    {
+						basketList.Add(item);
+						itemAddPrice = false;
+					}
+					
+                }
+                if (itemAddPrice)
+                {
+					var value = basketList.Where(b=>b.ProductId==item.ProductId).FirstOrDefault();
+					value.Price += item.Price;
+                    value.Count++;
+                    value.TotalPrice += item.Price;
+				}
+                itemAddPrice = true;
+                
+            }
+
+            return basketList;
         }
     }
 }
