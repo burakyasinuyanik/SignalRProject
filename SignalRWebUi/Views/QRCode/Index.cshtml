@@ -1,0 +1,25 @@
+﻿
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/AdminLayout/Index.cshtml";
+	var bag = ViewBag.QrCodeImage;
+}
+
+
+<div class="content">
+	<div class="container-fluid">
+		<h4 class="page-title">QR Kod Oluşturma İşlemleri</h4>
+		<div class="row">
+			<div class="col-md-12">
+				<form method="post">
+					<input type="text" name="value" required />
+					<input type="submit" value="QR Kod Oluştur" class="btn btn-warning" />
+				</form>
+			</div>
+			@if (bag != null)
+			{
+				<img src="@bag" alt="" style="width:400px; height:400px;" />
+			}
+		</div>
+	</div>
+</div>
