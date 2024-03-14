@@ -19,4 +19,5 @@ Real-Time Uygulamalar
 Real-Time Mesajlaşma
 Real-Time İstatistik
 Real-Time Bildirim
-Mail Gönderme İşlemleri
+Mail Gönderme İşlemleri![signalrSertifika](https://github.com/burakyasinuyanik/SignalRProject/assets/116893884/288f6ad0-806b-44a1-b96c-5c4b830efe17)
+
